@@ -1,12 +1,11 @@
 aid: wine-searcher
 name: Wine-Searcher
 description: >-
-  Our API allows you to plug Wine-Searcher data directly into your website or
-  application. Typical API consumers are wine apps, websites, blogs, market
-  research companies and those specializing in wine investments, valuations and
-  insurance. For any wine currently available in our database, the API can
-  supply all kinds of information including retail suppliers, prices, scores and
-  available vintages. 
+  Our API allows you to plug Wine-Searcher data directly into your website or application.
+  Typical API consumers are wine apps, websites, blogs, market research companies
+  and those specializing in wine investments, valuations and insurance. For any wine
+  currently available in our database, the API can supply all kinds of information
+  including retail suppliers, prices, scores and available vintages.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -22,12 +21,11 @@ apis:
   - aid: wine-searcher:wine-searcher
     name: Wine-Searcher
     description: >-
-      Our API allows you to plug Wine-Searcher data directly into your website
-      or application. Typical API consumers are wine apps, websites, blogs,
-      market research companies and those specializing in wine investments,
-      valuations and insurance. For any wine currently available in our
-      database, the API can supply all kinds of information including retail
-      suppliers, prices, scores and available vintages. 
+      Our API allows you to plug Wine-Searcher data directly into your website or
+      application. Typical API consumers are wine apps, websites, blogs, market research
+      companies and those specializing in wine investments, valuations and insurance.
+      For any wine currently available in our database, the API can supply all kinds
+      of information including retail suppliers, prices, scores and available vintages.
     humanURL: ' https://www.wine-searcher.com/trade/ws-api'
     tags:
       - API
