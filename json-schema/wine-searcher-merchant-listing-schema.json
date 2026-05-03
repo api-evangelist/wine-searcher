@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/main/json-schema/wine-searcher-merchant-listing-schema.json",
+  "title": "MerchantListing",
+  "description": "A single merchant listing for a wine from Wine-Searcher",
+  "type": "object",
+  "properties": {
+    "merchant_name": {
+      "type": "string",
+      "description": "Name of the merchant/retailer"
+    },
+    "merchant_description": {
+      "type": "string",
+      "description": "Description of the merchant"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price of the wine at this merchant"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the price"
+    },
+    "vintage": {
+      "type": "string",
+      "description": "Vintage year of this listing"
+    },
+    "bottle_size": {
+      "type": "string",
+      "description": "Bottle size (e.g., 750ml, 1.5L)"
+    },
+    "offer_type": {
+      "type": "string",
+      "description": "Type of offer",
+      "enum": ["retail", "auction"]
+    },
+    "physical_address": {
+      "type": "string",
+      "description": "Physical store address"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country of the merchant"
+    },
+    "state": {
+      "type": "string",
+      "description": "State/region of the merchant"
+    },
+    "zip_code": {
+      "type": "string",
+      "description": "Postal code of the merchant"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Merchant latitude for geo lookup"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Merchant longitude for geo lookup"
+    },
+    "link": {
+      "type": "string",
+      "description": "URL to purchase the wine at this merchant"
+    }
+  },
+  "required": ["merchant_name", "price"]
+}

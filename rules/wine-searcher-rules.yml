@@ -1,0 +1,98 @@
+extends: [[spectral:oas, recommended]]
+
+rules:
+  # Wine-Searcher API uses GET for all endpoints
+  wine-searcher-get-only:
+    description: Wine-Searcher API uses GET for all endpoints
+    message: "Wine-Searcher API endpoints should use GET method"
+    severity: info
+    given: "$.paths[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  # api_key must be a required query parameter
+  wine-searcher-api-key-required:
+    description: All Wine-Searcher API endpoints must require api_key parameter
+    message: "Operation should include required 'api_key' query parameter"
+    severity: error
+    given: "$.paths[*].get.parameters[?(@.name=='api_key')]"
+    then:
+      field: required
+      function: truthy
+
+  # winename must be a required query parameter
+  wine-searcher-winename-required:
+    description: All Wine-Searcher API endpoints must require winename parameter
+    message: "Operation should include required 'winename' query parameter"
+    severity: error
+    given: "$.paths[*].get.parameters[?(@.name=='winename')]"
+    then:
+      field: required
+      function: truthy
+
+  # Operations must have operationIds
+  wine-searcher-operation-id-required:
+    description: All operations must have an operationId
+    message: "Operation is missing an operationId"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+
+  # OperationIds in camelCase
+  wine-searcher-operation-id-camel-case:
+    description: OperationIds should use camelCase
+    message: "OperationId '{{value}}' should use camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  # Operations must have tags
+  wine-searcher-operation-tags-required:
+    description: All operations must have at least one tag
+    message: "Operation is missing tags"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+
+  # Summaries must be present
+  wine-searcher-summary-required:
+    description: All operations must have a summary
+    message: "Operation is missing a summary"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: summary
+      function: truthy
+
+  # Schemas should have descriptions
+  wine-searcher-schema-descriptions:
+    description: Schema components should have descriptions
+    message: "Schema '{{path}}' is missing a description"
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  # Responses must be defined
+  wine-searcher-success-response-required:
+    description: Operations must define at least one response
+    message: "Operation has no responses defined"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1

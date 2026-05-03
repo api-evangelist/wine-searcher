@@ -1,0 +1,90 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "wine": "https://www.wine-searcher.com/vocab#",
+    "gs1": "https://www.gs1.org/voc/",
+
+    "Wine": {
+      "@id": "wine:Wine",
+      "@type": "@id"
+    },
+    "MerchantListing": "wine:MerchantListing",
+    "WineProducer": "wine:WineProducer",
+    "WineRegion": "wine:WineRegion",
+    "WineVintage": "wine:WineVintage",
+
+    "wineName": {
+      "@id": "wine:wineName",
+      "@type": "xsd:string"
+    },
+    "vintage": {
+      "@id": "wine:vintage",
+      "@type": "xsd:string"
+    },
+    "producer": {
+      "@id": "wine:producer",
+      "@type": "@id"
+    },
+    "region": {
+      "@id": "wine:region",
+      "@type": "xsd:string"
+    },
+    "grape": {
+      "@id": "wine:grape",
+      "@type": "xsd:string"
+    },
+    "alcoholByVolume": {
+      "@id": "wine:alcoholByVolume",
+      "@type": "xsd:decimal"
+    },
+    "criticScore": {
+      "@id": "wine:criticScore",
+      "@type": "xsd:decimal"
+    },
+    "priceAverage": {
+      "@id": "wine:priceAverage",
+      "@type": "xsd:decimal"
+    },
+    "priceMin": {
+      "@id": "wine:priceMin",
+      "@type": "xsd:decimal"
+    },
+    "priceMax": {
+      "@id": "wine:priceMax",
+      "@type": "xsd:decimal"
+    },
+    "listingCount": {
+      "@id": "wine:listingCount",
+      "@type": "xsd:integer"
+    },
+    "merchantName": {
+      "@id": "wine:merchantName",
+      "@type": "xsd:string"
+    },
+    "bottleSize": {
+      "@id": "wine:bottleSize",
+      "@type": "xsd:string"
+    },
+    "offerType": {
+      "@id": "wine:offerType",
+      "@type": "xsd:string"
+    },
+    "purchaseLink": {
+      "@id": "wine:purchaseLink",
+      "@type": "@id"
+    },
+    "Product": "schema:Product",
+    "price": "schema:price",
+    "priceCurrency": "schema:priceCurrency",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "GeoCoordinates": "schema:GeoCoordinates",
+    "latitude": "schema:latitude",
+    "longitude": "schema:longitude",
+    "addressCountry": "schema:addressCountry",
+    "Organization": "schema:Organization"
+  }
+}

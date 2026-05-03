@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/main/json-schema/wine-searcher-wine-schema.json",
+  "title": "Wine",
+  "description": "A wine with aggregated pricing and data from Wine-Searcher",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full wine name as known by Wine-Searcher"
+    },
+    "vintage": {
+      "type": "string",
+      "description": "Vintage year or NV (non-vintage)"
+    },
+    "producer": {
+      "type": "string",
+      "description": "Wine producer/winery name"
+    },
+    "region": {
+      "type": "string",
+      "description": "Wine production region"
+    },
+    "country": {
+      "type": "string",
+      "description": "Production country"
+    },
+    "grape": {
+      "type": "string",
+      "description": "Primary grape variety or blend"
+    },
+    "alcohol_by_volume": {
+      "type": "number",
+      "description": "Alcohol by volume percentage"
+    },
+    "score": {
+      "type": "number",
+      "description": "Wine-Searcher aggregated critic score (0-100)"
+    },
+    "price_average": {
+      "type": "number",
+      "description": "Average retail price across all listings"
+    },
+    "price_min": {
+      "type": "number",
+      "description": "Minimum retail price across all listings"
+    },
+    "price_max": {
+      "type": "number",
+      "description": "Maximum retail price across all listings"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for price values"
+    },
+    "listing_count": {
+      "type": "integer",
+      "description": "Total number of merchant listings"
+    }
+  },
+  "required": ["name"]
+}

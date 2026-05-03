@@ -1,0 +1,146 @@
+vocabulary:
+  name: Wine-Searcher Vocabulary
+  description: >-
+    Domain vocabulary for Wine-Searcher covering wine data, pricing, vintages,
+    critic scores, merchant listings, grape varieties, wine regions, and API
+    terminology for the Wine-Searcher platform.
+  version: '1.0'
+  created: '2026-05-03'
+  modified: '2026-05-03'
+  tags:
+    - Wine
+    - Prices
+    - Marketplace
+    - Merchants
+    - Vintages
+    - Data
+
+terms:
+  - term: Wine Check
+    definition: >-
+      The Wine-Searcher API endpoint that returns aggregated data for a wine,
+      including average/min/max price, aggregated critic score, grape variety,
+      region, and alcohol by volume.
+    category: API
+    tags:
+      - API
+      - Wine
+
+  - term: Market Price
+    definition: >-
+      The Wine-Searcher API endpoint that returns individual merchant listings
+      for a specific wine, sorted lowest price first. Returns up to 24 listings
+      including merchant name, price, location, bottle size, and purchase link.
+    category: API
+    tags:
+      - API
+      - Prices
+      - Merchants
+
+  - term: Wine-Searcher Score
+    definition: >-
+      An aggregated critic score (0-100) calculated by Wine-Searcher from
+      multiple professional wine critics' ratings. The score provides a
+      normalized view of a wine's critical reception across major publications.
+    category: Data
+    tags:
+      - Scores
+      - Critics
+      - Data
+
+  - term: Vintage
+    definition: >-
+      The year in which the grapes used to make a wine were harvested. In the
+      Wine-Searcher API, vintage is a 4-digit year parameter (e.g., 2019) or
+      "NV" for non-vintage wines such as Champagne base wines or blended spirits.
+    category: Wine
+    tags:
+      - Vintage
+      - Wine
+
+  - term: Offer Type
+    definition: >-
+      The sales channel for a wine listing. Possible values: R (retail — stores
+      and online shops), A (auction — wine auction houses), B (both retail and
+      auction). Used as a filter parameter in API requests.
+    category: API
+    tags:
+      - Offer Type
+      - API
+
+  - term: API Status Code
+    definition: >-
+      A numeric code returned in every Wine-Searcher API response indicating
+      the result: 0=Success, 1=No wines found, 2=Input error, 3=Server error,
+      4=Invalid API key, 5=Exceeded limit, 6=Access denied, 7=Subscription ended,
+      8=Multiple wines matched, 9=Nothing found, 10=Cannot access data, 99=Unknown.
+    category: API
+    tags:
+      - API
+      - Error Handling
+
+  - term: Cellar Management
+    definition: >-
+      A use case for the Wine-Searcher API where users maintain a private wine
+      collection and use the API to value wines in their cellar by looking up
+      current market prices.
+    category: Use Case
+    tags:
+      - Cellar
+      - Valuation
+      - Use Case
+
+  - term: Wine Investment
+    definition: >-
+      A use case where investors use the Wine-Searcher API to track fine wine
+      prices, monitor price trends for specific vintages, and value wine
+      portfolios based on current market data.
+    category: Use Case
+    tags:
+      - Investment
+      - Valuation
+      - Use Case
+
+  - term: Price Aggregation
+    definition: >-
+      Wine-Searcher's methodology for calculating average, minimum, and maximum
+      wine prices across all tracked merchant listings globally. Prices reflect
+      the current available retail and auction prices across the Wine-Searcher
+      database of millions of listings.
+    category: Data
+    tags:
+      - Prices
+      - Data
+      - Methodology
+
+  - term: Appellation
+    definition: >-
+      A geographically defined wine production area whose name is used to
+      identify a wine's origin. Examples include Bordeaux, Burgundy, Napa Valley,
+      and Barossa Valley. Mapped to the "region" field in the Wine-Searcher API.
+    category: Wine
+    tags:
+      - Region
+      - Wine
+
+  - term: Critic Score
+    definition: >-
+      A numerical rating (typically 0-100) assigned to a wine by a professional
+      wine critic or publication. Wine-Searcher aggregates scores from multiple
+      critics to produce its normalized Wine-Searcher Score.
+    category: Data
+    tags:
+      - Critics
+      - Scores
+      - Data
+
+  - term: Bottle Size
+    definition: >-
+      The volume of a wine bottle, typically expressed in milliliters or liters
+      (e.g., 375ml half-bottle, 750ml standard, 1.5L magnum). Included in merchant
+      listing data from the Market Price API.
+    category: Wine
+    tags:
+      - Bottle
+      - Volume
+      - Wine

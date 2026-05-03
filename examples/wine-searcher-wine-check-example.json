@@ -1,0 +1,32 @@
+{
+  "operation": "get-wine-check",
+  "method": "GET",
+  "path": "/wine-check",
+  "summary": "Get Wine Check Data",
+  "request": {
+    "api_key": "your_api_key",
+    "winename": "haut+brion",
+    "vintage": "2015",
+    "currencycode": "USD",
+    "format": "json"
+  },
+  "response": {
+    "status": 0,
+    "message": "Success",
+    "wine": {
+      "name": "Château Haut-Brion",
+      "vintage": "2015",
+      "producer": "Domaine Clarence Dillon",
+      "region": "Pessac-Léognan, Bordeaux",
+      "country": "France",
+      "grape": "Cabernet Sauvignon, Merlot, Cabernet Franc",
+      "alcohol_by_volume": 13.5,
+      "score": 98.5,
+      "price_average": 650.00,
+      "price_min": 540.00,
+      "price_max": 895.00,
+      "currency": "USD",
+      "listing_count": 312
+    }
+  }
+}
