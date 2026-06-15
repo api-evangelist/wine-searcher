@@ -1,0 +1,347 @@
+{
+  "item": [
+    {
+      "id": "c5c18b33-ebf5-4d8e-9ad2-95977880bb05",
+      "name": "wine-check",
+      "description": {
+        "content": "Wine price check and data lookup",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f4f68ae-32ee-4e86-a805-d60f32be42ae",
+          "name": "Get Wine Check Data",
+          "request": {
+            "name": "Get Wine Check Data",
+            "description": {
+              "content": "Returns aggregated wine data for a given wine name and optional vintage. Provides the Wine-Searcher aggregated critic score, grape variety, producer, region, min/max/average price, and alcohol by volume. This is the primary endpoint for wine valuation and data enrichment use cases.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wine-check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Wine-Searcher API key"
+                },
+                {
+                  "disabled": false,
+                  "key": "winename",
+                  "value": "<string>",
+                  "description": "(Required) Name of the wine to look up (URL-encoded, e.g., haut+brion)"
+                },
+                {
+                  "disabled": false,
+                  "key": "vintage",
+                  "value": "<string>",
+                  "description": "Wine vintage year (4-digit year or 'NV' for non-vintage)"
+                },
+                {
+                  "disabled": false,
+                  "key": "currencycode",
+                  "value": "USD",
+                  "description": "ISO 4217 currency code for price results (default: USD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>",
+                  "description": "Filter results by country code (e.g., USA, GBR)"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter results by US state code (e.g., CA, NY)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offer_type",
+                  "value": "<string>",
+                  "description": "Filter by offer type (R=retail, A=auction, B=both)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format (json or xml, default is xml)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fc2c5a1-bf33-4127-95ff-bffbdc112b5c",
+              "name": "Wine check results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wine-check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "winename",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vintage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currencycode",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offer_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 4,\n  \"message\": \"string\",\n  \"wine\": {\n    \"name\": \"string\",\n    \"vintage\": \"string\",\n    \"producer\": \"string\",\n    \"region\": \"string\",\n    \"country\": \"string\",\n    \"grape\": \"string\",\n    \"alcohol_by_volume\": 8915.808770216905,\n    \"score\": 608.8730621969452,\n    \"price_average\": 5798.658979439617,\n    \"price_min\": 9146.966345192668,\n    \"price_max\": 3280.493179764543,\n    \"currency\": \"string\",\n    \"listing_count\": 2433\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "758701b0-a287-477f-8d39-5e158a346fa2",
+      "name": "market-price",
+      "description": {
+        "content": "Merchant price listings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b134607a-dea5-4de2-a0a1-30307502263a",
+          "name": "Get Market Price Listings",
+          "request": {
+            "name": "Get Market Price Listings",
+            "description": {
+              "content": "Returns a list of merchants currently selling a specific wine, including shop name, price, location, and purchase links. Returns the first 24 merchant listings sorted by price (lowest first). Useful for price comparison, cellar management, and purchase integrations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market-price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your Wine-Searcher API key"
+                },
+                {
+                  "disabled": false,
+                  "key": "winename",
+                  "value": "<string>",
+                  "description": "(Required) Name of the wine to look up (URL-encoded)"
+                },
+                {
+                  "disabled": false,
+                  "key": "vintage",
+                  "value": "<string>",
+                  "description": "Wine vintage year or NV"
+                },
+                {
+                  "disabled": false,
+                  "key": "currencycode",
+                  "value": "USD",
+                  "description": "ISO 4217 currency code for price results"
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>",
+                  "description": "Filter results by country code"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter results by US state code"
+                },
+                {
+                  "disabled": false,
+                  "key": "offer_type",
+                  "value": "<string>",
+                  "description": "Filter by offer type (R=retail, A=auction)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format (json or xml)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7b93acc-3cbd-4326-b7fd-89c9cf1e8cbc",
+              "name": "Market price listings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market-price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "winename",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vintage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currencycode",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offer_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 2936,\n  \"message\": \"string\",\n  \"wine_name\": \"string\",\n  \"vintage\": \"string\",\n  \"listings\": [\n    {\n      \"merchant_name\": \"string\",\n      \"merchant_description\": \"string\",\n      \"price\": 9668.066475628242,\n      \"currency\": \"string\",\n      \"vintage\": \"string\",\n      \"bottle_size\": \"string\",\n      \"offer_type\": \"auction\",\n      \"physical_address\": \"string\",\n      \"country\": \"string\",\n      \"state\": \"string\",\n      \"zip_code\": \"string\",\n      \"latitude\": 8626.467076490788,\n      \"longitude\": 1203.9831445884474,\n      \"link\": \"string\"\n    },\n    {\n      \"merchant_name\": \"string\",\n      \"merchant_description\": \"string\",\n      \"price\": 871.210568143328,\n      \"currency\": \"string\",\n      \"vintage\": \"string\",\n      \"bottle_size\": \"string\",\n      \"offer_type\": \"retail\",\n      \"physical_address\": \"string\",\n      \"country\": \"string\",\n      \"state\": \"string\",\n      \"zip_code\": \"string\",\n      \"latitude\": 103.89468913064137,\n      \"longitude\": 322.58592624251236,\n      \"link\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.wine-searcher.com/ws_api.php",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d9a2d924-10b6-44b5-a4ce-5f684227c651",
+    "name": "Wine-Searcher API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Wine-Searcher API allows developers to plug Wine-Searcher wine data directly into websites and applications. Typical consumers include wine apps, blogs, market research companies, wine investment platforms, valuations, and insurance services. The API provides wine pricing data (average, min, max), critic scores, merchant listings, grape variety, region, and available vintages for any wine in the Wine-Searcher database. Requests are submitted using HTTP GET with query parameters. Responses can be returned in XML (default) or JSON.\n\nContact Support:\n Name: Wine-Searcher Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

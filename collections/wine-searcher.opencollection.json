@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wine-Searcher API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "wine-check",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Wine Check Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.wine-searcher.com/ws_api.php/wine-check",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Wine-Searcher API key"
+              },
+              {
+                "name": "winename",
+                "value": "",
+                "type": "query",
+                "description": "Name of the wine to look up (URL-encoded, e.g., haut+brion)"
+              },
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "query",
+                "description": "Wine vintage year (4-digit year or 'NV' for non-vintage)"
+              },
+              {
+                "name": "currencycode",
+                "value": "",
+                "type": "query",
+                "description": "ISO 4217 currency code for price results (default: USD)"
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by country code (e.g., USA, GBR)"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by US state code (e.g., CA, NY)"
+              },
+              {
+                "name": "offer_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by offer type (R=retail, A=auction, B=both)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format (json or xml, default is xml)"
+              }
+            ]
+          },
+          "docs": "Returns aggregated wine data for a given wine name and optional vintage. Provides the Wine-Searcher aggregated critic score, grape variety, producer, region, min/max/average price, and alcohol by volume. This is the primary endpoint for wine valuation and data enrichment use cases."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "market-price",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Market Price Listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.wine-searcher.com/ws_api.php/market-price",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your Wine-Searcher API key"
+              },
+              {
+                "name": "winename",
+                "value": "",
+                "type": "query",
+                "description": "Name of the wine to look up (URL-encoded)"
+              },
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "query",
+                "description": "Wine vintage year or NV"
+              },
+              {
+                "name": "currencycode",
+                "value": "",
+                "type": "query",
+                "description": "ISO 4217 currency code for price results"
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by country code"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by US state code"
+              },
+              {
+                "name": "offer_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by offer type (R=retail, A=auction)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format (json or xml)"
+              }
+            ]
+          },
+          "docs": "Returns a list of merchants currently selling a specific wine, including shop name, price, location, and purchase links. Returns the first 24 merchant listings sorted by price (lowest first). Useful for price comparison, cellar management, and purchase integrations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
