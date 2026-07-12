@@ -46,6 +46,8 @@ apis:
       - type: SpectralRules
         url: https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/main/rules/wine-searcher-rules.yml
 common:
+  - type: DomainSecurity
+    url: security/wine-searcher-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/wine-searcher-com
   - type: Website
