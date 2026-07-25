@@ -1,0 +1,166 @@
+openapi: 3.0.3
+info:
+  title: Wine-Searcher market-price API
+  description: The Wine-Searcher API allows developers to plug Wine-Searcher wine data directly into websites and applications. Typical consumers include wine apps, blogs, market research companies, wine investment platforms, valuations, and insurance services. The API provides wine pricing data (average, min, max), critic scores, merchant listings, grape variety, region, and available vintages for any wine in the Wine-Searcher database. Requests are submitted using HTTP GET with query parameters. Responses can be returned in XML (default) or JSON.
+  version: 1.0.0
+  contact:
+    name: Wine-Searcher Developer Support
+    url: https://www.wine-searcher.com/trade/ws-api
+  termsOfService: https://www.wine-searcher.com/trade/terms
+servers:
+- url: https://www.wine-searcher.com/ws_api.php
+  description: Wine-Searcher API
+tags:
+- name: market-price
+  description: Merchant price listings
+paths:
+  /market-price:
+    get:
+      operationId: getMarketPrice
+      summary: Get Market Price Listings
+      description: Returns a list of merchants currently selling a specific wine, including shop name, price, location, and purchase links. Returns the first 24 merchant listings sorted by price (lowest first). Useful for price comparison, cellar management, and purchase integrations.
+      tags:
+      - market-price
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        description: Your Wine-Searcher API key
+        schema:
+          type: string
+      - name: winename
+        in: query
+        required: true
+        description: Name of the wine to look up (URL-encoded)
+        schema:
+          type: string
+      - name: vintage
+        in: query
+        required: false
+        description: Wine vintage year or NV
+        schema:
+          type: string
+      - name: currencycode
+        in: query
+        required: false
+        description: ISO 4217 currency code for price results
+        schema:
+          type: string
+          default: USD
+      - name: location
+        in: query
+        required: false
+        description: Filter results by country code
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        description: Filter results by US state code
+        schema:
+          type: string
+      - name: offer_type
+        in: query
+        required: false
+        description: Filter by offer type (R=retail, A=auction)
+        schema:
+          type: string
+          enum:
+          - R
+          - A
+          - B
+      - name: format
+        in: query
+        required: false
+        description: Response format (json or xml)
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+      responses:
+        '200':
+          description: Market price listings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketPriceResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MarketPriceResponse'
+components:
+  schemas:
+    MerchantListing:
+      type: object
+      description: A single merchant listing for a wine
+      properties:
+        merchant_name:
+          type: string
+          description: Name of the merchant/retailer
+        merchant_description:
+          type: string
+          description: Description of the merchant
+        price:
+          type: number
+          format: float
+          description: Price of the wine at this merchant
+        currency:
+          type: string
+          description: Currency code for the price
+        vintage:
+          type: string
+          description: Vintage year of this listing
+        bottle_size:
+          type: string
+          description: Bottle size (e.g., 750ml, 1.5L)
+        offer_type:
+          type: string
+          description: Type of offer (retail or auction)
+          enum:
+          - retail
+          - auction
+        physical_address:
+          type: string
+          description: Physical store address if applicable
+        country:
+          type: string
+          description: Country of the merchant
+        state:
+          type: string
+          description: State/region of the merchant
+        zip_code:
+          type: string
+          description: Postal code of the merchant
+        latitude:
+          type: number
+          format: float
+          description: Merchant latitude for geo lookup
+        longitude:
+          type: number
+          format: float
+          description: Merchant longitude for geo lookup
+        link:
+          type: string
+          description: URL to purchase the wine at this merchant
+    MarketPriceResponse:
+      type: object
+      description: Response from the Market Price API endpoint
+      properties:
+        status:
+          type: integer
+          description: API status code (same as WineCheckResponse)
+        message:
+          type: string
+          description: Status message
+        wine_name:
+          type: string
+          description: Wine name used in the query
+        vintage:
+          type: string
+          description: Vintage year
+        listings:
+          type: array
+          description: Merchant listings sorted by price (lowest first, max 24)
+          items:
+            $ref: '#/components/schemas/MerchantListing'
