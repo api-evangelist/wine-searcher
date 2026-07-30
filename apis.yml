@@ -7,9 +7,21 @@ description: >-
   applications. Typical API consumers include wine apps, websites, blogs, market research companies, wine investment
   platforms, and insurance services.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/wine-searcher.png
 tags:
   - Data
   - Marketplace
@@ -23,28 +35,36 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: wine-searcher:wine-searcher-api
-    name: Wine-Searcher API
-    description: >-
-      The Wine-Searcher API provides wine pricing data, aggregated critic scores, grape variety, region, and merchant
-      listings for any wine in the Wine-Searcher database. The API uses HTTP GET requests with query parameters.
-      Responses are available in JSON or XML format. Includes a Wine Check endpoint for aggregated wine data and a
-      Market Price endpoint for individual merchant listings.
-    humanURL: https://www.wine-searcher.com/trade/ws-api
-    baseURL: https://www.wine-searcher.com/ws_api.php
-    tags:
-      - Wine
-      - Prices
-      - Data
-      - Marketplace
-    properties:
-      - type: Documentation
-        url: https://www.wine-searcher.com/trade/ws-api
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/main/openapi/wine-searcher-openapi.yml
-      - type: SpectralRules
-        url: https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/main/rules/wine-searcher-rules.yml
+- aid: wine-searcher:wine-searcher-market-price-api
+  name: Wine-Searcher market-price API
+  description: Merchant price listings
+  humanURL: https://www.wine-searcher.com/trade/ws-api
+  baseURL: https://www.wine-searcher.com/ws_api.php
+  tags:
+  - market-price
+  properties:
+  - type: OpenAPI
+    url: openapi/wine-searcher-market-price-api-openapi.yml
+  - type: Documentation
+    url: https://www.wine-searcher.com/trade/ws-api
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/main/rules/wine-searcher-rules.yml
+- aid: wine-searcher:wine-searcher-wine-check-api
+  name: Wine-Searcher wine-check API
+  description: Wine price check and data lookup
+  humanURL: https://www.wine-searcher.com/trade/ws-api
+  baseURL: https://www.wine-searcher.com/ws_api.php
+  tags:
+  - wine-check
+  properties:
+  - type: OpenAPI
+    url: openapi/wine-searcher-wine-check-api-openapi.yml
+  - type: Documentation
+    url: https://www.wine-searcher.com/trade/ws-api
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/main/rules/wine-searcher-rules.yml
 common:
   - type: AgenticAccess
     url: agentic-access/wine-searcher-agentic-access.yml
