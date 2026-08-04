@@ -1,0 +1,16 @@
+{
+  "provider": "wine-searcher",
+  "sources": [
+    "wine-searcher-market-price-api-openapi.yml",
+    "wine-searcher-wine-check-api-openapi.yml"
+  ],
+  "outputs": [
+    "wine-searcher-market-price-api-openapi.yml",
+    "wine-searcher-wine-check-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

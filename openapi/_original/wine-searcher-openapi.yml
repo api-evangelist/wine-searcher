@@ -1,0 +1,318 @@
+openapi: "3.0.3"
+info:
+  title: Wine-Searcher API
+  description: >-
+    The Wine-Searcher API allows developers to plug Wine-Searcher wine data
+    directly into websites and applications. Typical consumers include wine apps,
+    blogs, market research companies, wine investment platforms, valuations, and
+    insurance services. The API provides wine pricing data (average, min, max),
+    critic scores, merchant listings, grape variety, region, and available vintages
+    for any wine in the Wine-Searcher database. Requests are submitted using HTTP
+    GET with query parameters. Responses can be returned in XML (default) or JSON.
+  version: "1.0.0"
+  contact:
+    name: Wine-Searcher Developer Support
+    url: https://www.wine-searcher.com/trade/ws-api
+  termsOfService: https://www.wine-searcher.com/trade/terms
+servers:
+  - url: https://www.wine-searcher.com/ws_api.php
+    description: Wine-Searcher API
+
+tags:
+  - name: wine-check
+    description: Wine price check and data lookup
+  - name: market-price
+    description: Merchant price listings
+
+paths:
+  /wine-check:
+    get:
+      operationId: getWineCheck
+      summary: Get Wine Check Data
+      description: >-
+        Returns aggregated wine data for a given wine name and optional vintage.
+        Provides the Wine-Searcher aggregated critic score, grape variety, producer,
+        region, min/max/average price, and alcohol by volume. This is the primary
+        endpoint for wine valuation and data enrichment use cases.
+      tags:
+        - wine-check
+      parameters:
+        - name: api_key
+          in: query
+          required: true
+          description: "Your Wine-Searcher API key"
+          schema:
+            type: string
+        - name: winename
+          in: query
+          required: true
+          description: "Name of the wine to look up (URL-encoded, e.g., haut+brion)"
+          schema:
+            type: string
+        - name: vintage
+          in: query
+          required: false
+          description: "Wine vintage year (4-digit year or 'NV' for non-vintage)"
+          schema:
+            type: string
+        - name: currencycode
+          in: query
+          required: false
+          description: "ISO 4217 currency code for price results (default: USD)"
+          schema:
+            type: string
+            default: USD
+        - name: location
+          in: query
+          required: false
+          description: "Filter results by country code (e.g., USA, GBR)"
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          description: "Filter results by US state code (e.g., CA, NY)"
+          schema:
+            type: string
+        - name: offer_type
+          in: query
+          required: false
+          description: "Filter by offer type (R=retail, A=auction, B=both)"
+          schema:
+            type: string
+            enum: [R, A, B]
+        - name: format
+          in: query
+          required: false
+          description: "Response format (json or xml, default is xml)"
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+      responses:
+        "200":
+          description: "Wine check results"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WineCheckResponse"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/WineCheckResponse"
+
+  /market-price:
+    get:
+      operationId: getMarketPrice
+      summary: Get Market Price Listings
+      description: >-
+        Returns a list of merchants currently selling a specific wine, including
+        shop name, price, location, and purchase links. Returns the first 24
+        merchant listings sorted by price (lowest first). Useful for price
+        comparison, cellar management, and purchase integrations.
+      tags:
+        - market-price
+      parameters:
+        - name: api_key
+          in: query
+          required: true
+          description: "Your Wine-Searcher API key"
+          schema:
+            type: string
+        - name: winename
+          in: query
+          required: true
+          description: "Name of the wine to look up (URL-encoded)"
+          schema:
+            type: string
+        - name: vintage
+          in: query
+          required: false
+          description: "Wine vintage year or NV"
+          schema:
+            type: string
+        - name: currencycode
+          in: query
+          required: false
+          description: "ISO 4217 currency code for price results"
+          schema:
+            type: string
+            default: USD
+        - name: location
+          in: query
+          required: false
+          description: "Filter results by country code"
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          description: "Filter results by US state code"
+          schema:
+            type: string
+        - name: offer_type
+          in: query
+          required: false
+          description: "Filter by offer type (R=retail, A=auction)"
+          schema:
+            type: string
+            enum: [R, A, B]
+        - name: format
+          in: query
+          required: false
+          description: "Response format (json or xml)"
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+      responses:
+        "200":
+          description: "Market price listings"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MarketPriceResponse"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/MarketPriceResponse"
+
+components:
+  schemas:
+    WineCheckResponse:
+      type: object
+      description: "Response from the Wine Check API endpoint"
+      properties:
+        status:
+          type: integer
+          description: >-
+            API status code: 0=Success, 1=No wines found, 2=Input error,
+            3=Server error, 4=Invalid access code, 5=Exceeded limit,
+            6=Access denied, 7=Subscription ended, 8=Multiple wines matched,
+            9=Nothing found, 10=Cannot access data, 99=Unknown error
+          enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 99]
+        message:
+          type: string
+          description: "Status message describing the result"
+        wine:
+          $ref: "#/components/schemas/Wine"
+
+    Wine:
+      type: object
+      description: "Wine data with aggregated pricing and details"
+      properties:
+        name:
+          type: string
+          description: "Full wine name as known by Wine-Searcher"
+        vintage:
+          type: string
+          description: "Vintage year or NV (non-vintage)"
+        producer:
+          type: string
+          description: "Wine producer/winery name"
+        region:
+          type: string
+          description: "Wine production region"
+        country:
+          type: string
+          description: "Production country"
+        grape:
+          type: string
+          description: "Primary grape variety or blend"
+        alcohol_by_volume:
+          type: number
+          format: float
+          description: "Alcohol by volume percentage"
+        score:
+          type: number
+          format: float
+          description: "Wine-Searcher aggregated critic score (0-100)"
+        price_average:
+          type: number
+          format: float
+          description: "Average retail price across all listings"
+        price_min:
+          type: number
+          format: float
+          description: "Minimum retail price across all listings"
+        price_max:
+          type: number
+          format: float
+          description: "Maximum retail price across all listings"
+        currency:
+          type: string
+          description: "Currency code for the price values"
+        listing_count:
+          type: integer
+          description: "Total number of merchant listings"
+
+    MarketPriceResponse:
+      type: object
+      description: "Response from the Market Price API endpoint"
+      properties:
+        status:
+          type: integer
+          description: "API status code (same as WineCheckResponse)"
+        message:
+          type: string
+          description: "Status message"
+        wine_name:
+          type: string
+          description: "Wine name used in the query"
+        vintage:
+          type: string
+          description: "Vintage year"
+        listings:
+          type: array
+          description: "Merchant listings sorted by price (lowest first, max 24)"
+          items:
+            $ref: "#/components/schemas/MerchantListing"
+
+    MerchantListing:
+      type: object
+      description: "A single merchant listing for a wine"
+      properties:
+        merchant_name:
+          type: string
+          description: "Name of the merchant/retailer"
+        merchant_description:
+          type: string
+          description: "Description of the merchant"
+        price:
+          type: number
+          format: float
+          description: "Price of the wine at this merchant"
+        currency:
+          type: string
+          description: "Currency code for the price"
+        vintage:
+          type: string
+          description: "Vintage year of this listing"
+        bottle_size:
+          type: string
+          description: "Bottle size (e.g., 750ml, 1.5L)"
+        offer_type:
+          type: string
+          description: "Type of offer (retail or auction)"
+          enum: [retail, auction]
+        physical_address:
+          type: string
+          description: "Physical store address if applicable"
+        country:
+          type: string
+          description: "Country of the merchant"
+        state:
+          type: string
+          description: "State/region of the merchant"
+        zip_code:
+          type: string
+          description: "Postal code of the merchant"
+        latitude:
+          type: number
+          format: float
+          description: "Merchant latitude for geo lookup"
+        longitude:
+          type: number
+          format: float
+          description: "Merchant longitude for geo lookup"
+        link:
+          type: string
+          description: "URL to purchase the wine at this merchant"
