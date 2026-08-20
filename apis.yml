@@ -41,6 +41,8 @@ apis:
   humanURL: https://www.wine-searcher.com/trade/ws-api
   baseURL: https://www.wine-searcher.com/ws_api.php
   tags:
+  - MarketPrice
+  tags_raw:
   - market-price
   properties:
   - type: OpenAPI
