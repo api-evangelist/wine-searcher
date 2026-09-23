@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wine-Searcher market-price wine-check API
-  description: The Wine-Searcher API allows developers to plug Wine-Searcher wine data directly into websites and applications. Typical consumers include wine apps, blogs, market research companies, wine investment platforms, valuations, and insurance services. The API provides wine pricing data (average, min, max), critic scores, merchant listings, grape variety, region, and available vintages for any wine in the Wine-Searcher database. Requests are submitted using HTTP GET with query parameters. Responses can be returned in XML (default) or JSON.
+  title: Wine-Searcher Wine Check API
+  description: The Wine-Searcher API allows developers to plug Wine-Searcher wine data directly into websites and applications.
   version: 1.0.0
   contact:
     name: Wine-Searcher Developer Support
@@ -91,31 +91,6 @@ paths:
                 $ref: '#/components/schemas/WineCheckResponse'
 components:
   schemas:
-    WineCheckResponse:
-      type: object
-      description: Response from the Wine Check API endpoint
-      properties:
-        status:
-          type: integer
-          description: 'API status code: 0=Success, 1=No wines found, 2=Input error, 3=Server error, 4=Invalid access code, 5=Exceeded limit, 6=Access denied, 7=Subscription ended, 8=Multiple wines matched, 9=Nothing found, 10=Cannot access data, 99=Unknown error'
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          - 99
-        message:
-          type: string
-          description: Status message describing the result
-        wine:
-          $ref: '#/components/schemas/Wine'
     Wine:
       type: object
       description: Wine data with aggregated pricing and details
@@ -164,3 +139,28 @@ components:
         listing_count:
           type: integer
           description: Total number of merchant listings
+    WineCheckResponse:
+      type: object
+      description: Response from the Wine Check API endpoint
+      properties:
+        status:
+          type: integer
+          description: 'API status code: 0=Success, 1=No wines found, 2=Input error, 3=Server error, 4=Invalid access code, 5=Exceeded limit, 6=Access denied, 7=Subscription ended, 8=Multiple wines matched, 9=Nothing found, 10=Cannot access data, 99=Unknown error'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 99
+        message:
+          type: string
+          description: Status message describing the result
+        wine:
+          $ref: '#/components/schemas/Wine'

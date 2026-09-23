@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wine-Searcher market-price API
-  description: The Wine-Searcher API allows developers to plug Wine-Searcher wine data directly into websites and applications. Typical consumers include wine apps, blogs, market research companies, wine investment platforms, valuations, and insurance services. The API provides wine pricing data (average, min, max), critic scores, merchant listings, grape variety, region, and available vintages for any wine in the Wine-Searcher database. Requests are submitted using HTTP GET with query parameters. Responses can be returned in XML (default) or JSON.
+  title: Wine-Searcher Market Price API
+  description: The Wine-Searcher API allows developers to plug Wine-Searcher wine data directly into websites and applications.
   version: 1.0.0
   contact:
     name: Wine-Searcher Developer Support
@@ -11,7 +11,7 @@ servers:
 - url: https://www.wine-searcher.com/ws_api.php
   description: Wine-Searcher API
 tags:
-- name: market-price
+- name: Market Price
   description: Merchant price listings
 paths:
   /market-price:
@@ -20,7 +20,7 @@ paths:
       summary: Get Market Price Listings
       description: Returns a list of merchants currently selling a specific wine, including shop name, price, location, and purchase links. Returns the first 24 merchant listings sorted by price (lowest first). Useful for price comparison, cellar management, and purchase integrations.
       tags:
-      - market-price
+      - Market Price
       parameters:
       - name: api_key
         in: query
