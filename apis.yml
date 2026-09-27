@@ -48,7 +48,7 @@ url: https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/m
 specificationVersion: '0.23'
 apis:
 - aid: wine-searcher:wine-searcher-market-price-api
-  name: Wine-Searcher market-price API
+  name: Wine-Searcher Market Price API
   description: Merchant price listings
   humanURL: https://www.wine-searcher.com/trade/ws-api
   baseURL: https://www.wine-searcher.com/ws_api.php
@@ -65,7 +65,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/wine-searcher/refs/heads/main/rules/wine-searcher-rules.yml
 - aid: wine-searcher:wine-searcher-wine-check-api
-  name: Wine-Searcher wine-check API
+  name: Wine-Searcher Wine Check API
   description: Wine price check and data lookup
   humanURL: https://www.wine-searcher.com/trade/ws-api
   baseURL: https://www.wine-searcher.com/ws_api.php

@@ -91,6 +91,27 @@ paths:
                 $ref: '#/components/schemas/MarketPriceResponse'
 components:
   schemas:
+    MarketPriceResponse:
+      type: object
+      description: Response from the Market Price API endpoint
+      properties:
+        status:
+          type: integer
+          description: API status code (same as WineCheckResponse)
+        message:
+          type: string
+          description: Status message
+        wine_name:
+          type: string
+          description: Wine name used in the query
+        vintage:
+          type: string
+          description: Vintage year
+        listings:
+          type: array
+          description: Merchant listings sorted by price (lowest first, max 24)
+          items:
+            $ref: '#/components/schemas/MerchantListing'
     MerchantListing:
       type: object
       description: A single merchant listing for a wine
@@ -143,24 +164,3 @@ components:
         link:
           type: string
           description: URL to purchase the wine at this merchant
-    MarketPriceResponse:
-      type: object
-      description: Response from the Market Price API endpoint
-      properties:
-        status:
-          type: integer
-          description: API status code (same as WineCheckResponse)
-        message:
-          type: string
-          description: Status message
-        wine_name:
-          type: string
-          description: Wine name used in the query
-        vintage:
-          type: string
-          description: Vintage year
-        listings:
-          type: array
-          description: Merchant listings sorted by price (lowest first, max 24)
-          items:
-            $ref: '#/components/schemas/MerchantListing'
